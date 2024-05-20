@@ -1,0 +1,69 @@
+.Fonte_Titulo {
+    position: relative;
+    /* Para z-index funcionar */
+    z-index: 2;
+    /* Valor maior que o retângulo */
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+}
+
+body {
+    background-color: black;
+}
+
+
+
+
+.Caixa-texto {
+
+
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    transform: translateY(1050%);
+    background-color: #333c;
+    color: white;
+
+}
+
+.Caixa-texto::placeholder {
+
+    color: #555;
+}
+
+
+.Retangulo {
+    width: 450px;
+    /* Largura do retângulo */
+    height: 560px;
+    /* Altura do retângulo */
+    background-color: #333;
+    /* Cor de fundo do retângulo */
+    border: 2px solid #333;
+    /* Borda do retângulo */
+    border-radius: 5px;
+    /* Raio dos cantos do retângulo */
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+}
+
+@media screen and (main-width: 440px) {
+
+    .Fonte_Titulo {}
+
+    body {}
+
+    .Caixa-texto {}
+
+    .Retangulo {}
+
+}
