@@ -1,13 +1,8 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-import os
-from openai import OpenAI
+from app.service.just_ai_service import JustAiService
 
-client = OpenAI(os.environ.get("OPENAI_API_KEY"))
-
-# Configuração da API do OpenAI
-
-app = FastAPI()
+router = APIRouter()
 
 # Modelo de dados para entrada do usuário
 class UserRequest(BaseModel):
@@ -16,6 +11,21 @@ class UserRequest(BaseModel):
     city: str
     problem_summary: str
 
+# Rota para processar a solicitação do usuário
+@router.post("/legal-advice")
+def get_legal_advice(user_request: UserRequest):
+    
+    try:
+        advice = generate_legal_advice(
+            user_request.name,
+            user_request.age,
+            user_request.city,
+            user_request.problem_summary
+        )
+        return {"advice": advice}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
 # Função para gerar resposta usando OpenAI
 def generate_legal_advice(name: str, age: int, city: str, problem_summary: str) -> str:
     prompt = f"""
@@ -37,25 +47,3 @@ def generate_legal_advice(name: str, age: int, city: str, problem_summary: str) 
     max_tokens=500)
     
     return response.choices[0].text.strip()
-
-# Rota para processar a solicitação do usuário
-@app.post("/legal-advice")
-def get_legal_advice(user_request: UserRequest):
-    try:
-        advice = generate_legal_advice(
-            user_request.name,
-            user_request.age,
-            user_request.city,
-            user_request.problem_summary
-        )
-        return {"advice": advice}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-# Executando o servidor
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
