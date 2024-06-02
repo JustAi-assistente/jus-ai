@@ -1,9 +1,11 @@
 from fastapi import FastAPI
-import os
+import uuid
 import uvicorn
 from openai import OpenAI
 import json
 from fastapi.middleware.cors import CORSMiddleware
+from app.core.middlewares.logging_middleware import LoggingMiddleware
+from app.core.monitoring import logging_config
 from app.routes.v1 import just_ai_router
 
 ###############################################################################
@@ -20,8 +22,17 @@ app = FastAPI(
 )
 
 ###############################################################################
+#   Logging configuration                                                     #
+###############################################################################
+
+logging_config.configure_logging(
+    level='DEBUG', service='just-ai', instance=str(uuid.uuid4()))
+
+###############################################################################
 #   Middlewares configuration                                                 #
 ###############################################################################
+
+app.add_middleware(LoggingMiddleware)
 
 origins = ["*"]
 
