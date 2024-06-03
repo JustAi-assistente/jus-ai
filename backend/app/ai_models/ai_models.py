@@ -34,6 +34,21 @@ class AIModels:
                 f"[{__name__}] - Error while running openai with message: {retry_err}")
             raise Exception
         
+    def run_gpt35(self, openai_message: List[BaseMessage], temperature = 1.0):
+        model_name = 'gpt-3.5-turbo'
+        self.logger.info(f"[{__name__}] -  Run openai {model_name}...")
+        try:
+            openai_response = self.__run_gpt(openai_message, model_name, temperature)
+            
+            self.logger.info(
+                f"[{__name__}] - Prompt execute with message: {openai_response}")
+            return openai_response
+        except tenacity.RetryError as retry_err:
+            self.logger.error(
+                f"[{__name__}] - Error while running openai with message: {retry_err}")
+            raise Exception
+        
+        
     @retry(wait=wait_random_exponential(min=60, max=240), stop=stop_after_attempt(2))
     def __run_gpt(self, openai_message_object_array, model_name, temperature):        
         self.logger.info(f"[{__name__}] - Run openai gpt with model: {model_name}...")

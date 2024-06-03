@@ -11,7 +11,7 @@ class JustAiService:
     def execute(self, data: UserRequest):
         self.logger.debug(f"[{__name__}] - Executing ...")
         
-        response = self.openai_handler.execute_with_gpt4(data.messages)
+        response = self.openai_handler.execute_with_gpt35(data.messages)
         
         self.logger.debug(f"[{__name__}] - Finished")
 

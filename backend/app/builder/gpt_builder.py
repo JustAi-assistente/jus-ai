@@ -19,7 +19,5 @@ class GptBuilder:
                 message = SystemMessage(content=message.content)
             openai_message_object_array.append(convert_message_to_dict(message))
             
-        
-        
         self.logger.info(f"[{__name__}] - GPT object array: {openai_message_object_array}")
         return openai_message_object_array

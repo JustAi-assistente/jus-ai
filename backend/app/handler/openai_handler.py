@@ -27,3 +27,19 @@ class OpenAiHandler:
             self.logger.error(
                 f"[{__name__}] - Error while running openai with message: {e}")
             raise e
+    
+    def execute_with_gpt35(self, messages: List[BaseMessage]) -> str:
+        self.logger.info(f"[{__name__}] - executing ...")
+
+        system_prompt = self.template.get_system_template()
+        openai_message_object_array = self.gpt_builder.build_gpt_object_array(messages, system_prompt)
+        
+        try:
+            output_text = self.api_models.run_gpt35(openai_message_object_array)
+
+            self.logger.info(f"[{__name__}] - output_text: {output_text}")
+            return output_text
+        except Exception as e:
+            self.logger.error(
+                f"[{__name__}] - Error while running openai with message: {e}")
+            raise e
