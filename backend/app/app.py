@@ -32,7 +32,7 @@ logging_config.configure_logging(
 #   Middlewares configuration                                                 #
 ###############################################################################
 
-app.add_middleware(LoggingMiddleware)
+# app.add_middleware(LoggingMiddleware)
 
 origins = ["*"]
 
