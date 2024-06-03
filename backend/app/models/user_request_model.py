@@ -1,8 +1,7 @@
 from pydantic import BaseModel
-
-# Modelo de dados para entrada do usuário
+from typing import List
+class OpenaiMessage(BaseModel):
+    role: str
+    content: str
 class UserRequest(BaseModel):
-    name: str
-    age: int
-    city: str
-    problem_summary: str
+    messages: List[OpenaiMessage]
