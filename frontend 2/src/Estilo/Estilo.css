@@ -1,0 +1,338 @@
+body {
+    background-color: #333;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.Caixa-texto {
+    color: white;
+    width: 100%;
+    max-width: 600px;
+    min-height: 60px;
+    max-height: 300px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #333;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Caixa-texto::placeholder {
+    color: #555;
+}
+
+.Retangulo {
+    width: 20%;
+    height: 45%;
+    padding: 120px;
+    background-color: #333;
+    border: 3px solid #333;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Menu {
+    width: 20%;
+    height: 1718px;
+    padding: 100px;
+    background-color: #444;
+    border: 3px solid #444;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+}
+
+.Botao_Enviar {
+    position: absolute;
+    top: 87%;
+    left: 89%;
+    background-color: rgba(255, 255, 255, 0);
+    /* Cor de fundo branca com 50% de transparência */
+    color: #ffffff;
+    /* Cor do texto do botão */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    /* Transição suave da cor de fundo */
+}
+
+.Botao_Enviar:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    /* Cor de fundo mais escura quando hover */
+}
+
+
+.Mensagens {
+    width: 100%;
+    max-width: 300px;
+    max-height: px;
+    overflow-y: auto;
+    padding: 10px;
+    /* Reduzindo o padding */
+    margin-top: 20px;
+    background-color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+}
+
+.Mensagem {
+    background-color: #834040;
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    /* Reduzindo o padding */
+    margin-bottom: 5px;
+    border-radius: 10px;
+    text-align: right;
+    word-wrap: break-word;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* Reduzindo a opacidade do box-shadow */
+    display: block;
+    /* Definindo como inline-block para que o balão tenha o tamanho da mensagem */
+}
+
+
+/* Adicionar rolagem suave */
+.Mensagens {
+    scrollbar-width: thin;
+    /* Para Firefox */
+    scrollbar-color: #ff0000 #333;
+    /* Para Firefox */
+}
+
+.Mensagens::-webkit-scrollbar {
+    width: 8px;
+    /* Para Chrome, Safari e Opera */
+}
+
+.Mensagens::-webkit-scrollbar-track {
+    background: #222;
+}
+
+.Mensagens::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+.Botao_Novo_Chat {
+    position: absolute;
+    top: 16px;
+    left: 230px;
+    background-color: transparent;
+    border: none;
+    color: #b62b2b;
+
+}
+
+.Botao_Novo_Chat_2 {
+    position: absolute;
+    top: 16px;
+    left: 75px;
+    background-color: transparent;
+    border: none;
+    color: #b62b2b;
+
+}
+
+.Botao_Menu {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: transparent;
+    color: #ff0000;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.Botao_Menu:focus {
+    outline: none;
+}
+
+.logo {
+    width: 350px;
+    height: 200px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Users {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #b62b2b
+}
+
+.UsersIcon {
+    opacity: 0.5;
+    /* Define a opacidade para tornar o ícone transparente */
+    transition: opacity 0.3s ease;
+    /* Adiciona uma transição suave para o hover */
+}
+
+.UsersIcon:hover {
+    opacity: 1;
+    /* Retorna a opacidade ao valor normal ao passar o mouse */
+}
+
+
+.Sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    /* Oculta a barra lateral */
+    width: 250px;
+    height: 100%;
+    background-color: #444;
+    color: #fff;
+    transition: left 0.3s ease;
+    /* Animação suave */
+    padding: 10px;
+    z-index: 1000;
+}
+
+.Sidebar.open {
+    left: 0;
+    /* Mostra a barra lateral */
+}
+
+.Sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.Sidebar ul li {
+    padding: 8px 8px 8px 16px;
+    text-decoration: none;
+}
+
+.Sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.Sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+.tooltip {
+
+    z-index: 2000;
+}
+
+
+
+.Retangulo {
+    margin-left: 10px;
+    /* Ajusta a margem quando a barra lateral está aberta */
+    transition: margin-left 0.3s ease;
+}
+
+.Retangulo.open {
+    margin-left: 260px;
+    /* Ajuste de acordo com a largura da barra lateral */
+}
+
+.Info {
+
+    font-size: 14px;
+    position: absolute;
+    top: 70px;
+    left: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.Links {
+
+    position: absolute;
+    top: 130px;
+    left: 5px;
+}
+
+.Titulo_1 {
+
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: #b62b2b;
+    background-image: linear-gradient(to right, #b62b2b, #b23911);
+    color: white;
+    border-radius: 5px;
+
+}
+
+.Logo_Puc{
+
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 89%;
+    left: 30%;
+
+}
+.Devs{
+
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: 200px;
+    right:0%;
+
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 150px;
+        height: 120px;
+        top: 5px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+    .logo {
+        width: 200px;
+        height: 160px;
+        top: 8px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .logo {
+        width: 220px;
+        height: 180px;
+        top: 10px;
+    }
+}
