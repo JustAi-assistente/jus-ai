@@ -6,11 +6,15 @@ import { faPaperPlane, faBars, faPencilSquare, faUserCircle, faCaretDown } from 
 import { Tooltip } from 'react-tooltip';
 import Logo_Puc from './Imagens/puc.png';
 import Devs from './Imagens/Devs.png';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     const [text, setText] = useState('');
     const [messages, setMessages] = useState([]);
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [loading, setLoading] = useState(false);
     const messagesEndRef = useRef(null);
 
     const links = [
@@ -28,10 +32,27 @@ const App = () => {
         setText(e.target.value);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (text.trim()) {
-            setMessages([...messages, text]);
+            const userMessage = { role: 'user', content: text };
+            setMessages([...messages, userMessage]);
             setText('');
+
+            setLoading(true);
+
+            try {
+                const response = await axios.post('http://localhost:5555/just-ai/legal-advice', {
+                    messages: [...messages, userMessage]
+                });
+                const systemMessage = { role: 'system', content: response.data.response };
+                setMessages([...messages, userMessage, systemMessage]);
+            } catch (error) {
+                toast.error('Erro ao enviar mensagem. Por favor, tente novamente.');
+                const errorMessage = { role: 'error', content: 'Erro ao enviar mensagem. Por favor, tente novamente.' };
+                setMessages([...messages, userMessage, errorMessage]);
+            } finally {
+                setLoading(false);
+            }
         }
     };
 
@@ -55,10 +76,10 @@ const App = () => {
     };
 
     useEffect(() => {
-        messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
-
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+        }
     }, [messages]);
-
 
     return (
         <div className="App">
@@ -74,13 +95,11 @@ const App = () => {
                 <FontAwesomeIcon icon={faCaretDown} style={{ fontSize: '29px' }} />
             </button>
 
-
             <button className="Botao_Menu" onClick={toggleSidebar} data-tooltip-id="tooltip" data-tooltip-content="Abrir barra lateral">
                 <FontAwesomeIcon icon={faBars} style={{ fontSize: '25px' }} />
             </button>
 
             <div className={`Sidebar ${sidebarOpen ? 'open' : ''}`}>
-
                 <button className="Botao_Menu" onClick={toggleSidebar} data-tooltip-id="tooltip" data-tooltip-content="Fechar barra lateral">
                     <FontAwesomeIcon icon={faBars} style={{ fontSize: '25px' }} />
                 </button>
@@ -99,18 +118,13 @@ const App = () => {
                 </ul>
 
                 <img className='Logo_Puc' src={Logo_Puc} alt='Logo' />
-
-           
-       
-           
-           
             </div>
 
             <div className="Retangulo">
                 <div className="Mensagens" ref={messagesEndRef}>
                     {messages.map((msg, index) => (
-                        <div key={index} className="Mensagem">
-                            {msg}
+                        <div key={index} className={`Mensagem ${msg.role}`}>
+                            {msg.content}
                         </div>
                     ))}
                 </div>
@@ -123,20 +137,17 @@ const App = () => {
                     placeholder="Mensagem JustAI"
                 />
 
-                <button className="Botao_Enviar" onClick={handleSubmit}>
+                <button className="Botao_Enviar" onClick={handleSubmit} disabled={loading}>
                     <FontAwesomeIcon icon={faPaperPlane} />
                 </button>
-
             </div>
 
             <button className='Users' onClick={handleRegister} data-tooltip-id="tooltip" data-tooltip-content={"Cadastre-se"}>
                 <FontAwesomeIcon icon={faUserCircle} style={{ fontSize: '30px' }} className='UsersIcon' /></button>
 
-            
-                <img className='Devs' src={Devs} alt='Devs '/>
+            <img className='Devs' src={Devs} alt='Devs' />
 
-
-
+            <ToastContainer className="toast-container" />
         </div>
     );
 };
