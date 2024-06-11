@@ -23,3 +23,29 @@ Entre na pasta backend e execute o comando:
 ```bash
 pip3 install -r requirements.txt
 ```
+
+Export variáveis de ambiente
+```bash
+export OPENAI_API_KEY=
+```
+
+### Execução
+
+```bash 
+uvicorn app.app:app --host 0.0.0.0 --port 5555 --reload
+```
+
+mensagem: "INFO: Uvicorn running on http://0.0.0.0:5555 (Press CTRL+C to quit)"
+
+## Frontend
+
+### Instalação
+```bash
+npm install
+```
+
+### Execução
+```bash
+npm start
+```
+
