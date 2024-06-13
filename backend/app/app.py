@@ -25,8 +25,8 @@ app = FastAPI(
 #   Logging configuration                                                     #
 ###############################################################################
 
-logging_config.configure_logging(
-    level='DEBUG', service='just-ai', instance=str(uuid.uuid4()))
+# logging_config.configure_logging(
+#     level='DEBUG', service='just-ai', instance=str(uuid.uuid4()))
 
 ###############################################################################
 #   Middlewares configuration                                                 #
