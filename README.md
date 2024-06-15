@@ -24,9 +24,17 @@ Entre na pasta backend e execute o comando:
 pip3 install -r requirements.txt
 ```
 
-Export variáveis de ambiente
+Export variáveis de ambiente MAC/LINUX
 ```bash
 export OPENAI_API_KEY=
+
+```
+
+Export variáveis de WINDOWS
+Para exportar no windows, abra o pesquisar, escreva por "Variaveis de Ambiente" > Avnçado > Em baixo "Variaveis de ambiente" > Variaveis do sistema > Novo > Coloque o nome da variavel "OPENAI_API_KEY" > {Sua chave da OPENAI} em Valor da variavel, e cliquem em "OK" > "OK"
+```bash
+set OPENAI_API_KEY=
+
 ```
 
 ### Execução
