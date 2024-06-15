@@ -13,9 +13,20 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
     const [text, setText] = useState('');
     const [messages, setMessages] = useState([]);
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const links = [
         { text: 'Delegacia Eletrônica SP', url: 'https://www.delegaciaeletronica.policiacivil.sp.gov.br' },
@@ -122,6 +133,11 @@ const App = () => {
 
             <div className="Retangulo">
                 <div className="Mensagens" ref={messagesEndRef}>
+                    {loading && (
+                        <div className="loading-spinner">
+                            <div className="spinner"></div>
+                        </div>
+                    )}
                     {messages.slice().reverse().map((msg, index) => (
                         <div key={index} className={`Mensagem ${msg.role}`}>
                             {msg.content}
@@ -145,14 +161,11 @@ const App = () => {
             <button className='Users' onClick={handleRegister} data-tooltip-id="tooltip" data-tooltip-content={"Cadastre-se"}>
                 <FontAwesomeIcon icon={faUserCircle} style={{ fontSize: '30px' }} className='UsersIcon' /></button>
 
-            <img className='Devs' src={Devs} alt='Devs' />
+            {windowWidth > 600 && <img className='Devs' src={Devs} alt='Devs' />}
 
             <ToastContainer className="toast-container" />
         </div>
     );
 };
 
-
 export default App;
-
-
