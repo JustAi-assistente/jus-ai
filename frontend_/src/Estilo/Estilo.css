@@ -67,67 +67,60 @@ body {
     top: 87%;
     left: 89%;
     background-color: rgba(255, 255, 255, 0);
-    /* Cor de fundo branca com 50% de transparência */
-    color: #ffffff;
-    /* Cor do texto do botão */
+    color: #ffffff; 
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.4s ease;
-    /* Transição suave da cor de fundo */
+
 }
 
 .Botao_Enviar:hover {
     background-color: rgba(255, 255, 255, 0.10);
-    /* Cor de fundo mais escura quando hover */
+
 }
 
-
 .Mensagens {
-    width: 100%;
-    max-width: 300px;
-    max-height: px;
-    overflow-y: auto;
+    height: 400px;
+    width: 580px;
+    left: 5px;
+    overflow-y: scroll;
     padding: 10px;
-    /* Reduzindo o padding */
-    margin-top: 20px;
-    background-color: #333;
-    border: 1px solid #333;
-    border-radius: 5px;
-    box-sizing: border-box;
-    display: inline-block;
+    display: flex;
+    flex-direction:column-reverse ;
     position: absolute;
-    top: 10%;
 }
 
 .Mensagem {
-    background-color: #834040;
-    color: rgb(255, 255, 255);
-    padding: 5px;
-    /* Reduzindo o padding */
-    margin-bottom: 5px;
-    border-radius: 10px;
-    text-align: right;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: fit-content;
+    max-width: 70%;
     word-wrap: break-word;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    /* Reduzindo a opacidade do box-shadow */
-    display: block;
-    /* Definindo como inline-block para que o balão tenha o tamanho da mensagem */
+}
+
+.Mensagem.user {
+    align-self: flex-end;
+    background-color: #ff0000;
+    color: white;
 }
 
 
-/* Adicionar rolagem suave */
+
+
+/* Rolagem suave*/
 .Mensagens {
+    /* Para Firefox */
     scrollbar-width: thin;
-    /* Para Firefox */
     scrollbar-color: #ff0000 #333;
-    /* Para Firefox */
 }
 
+/* Para Chrome, Safari e Opera */
 .Mensagens::-webkit-scrollbar {
     width: 8px;
-    /* Para Chrome, Safari e Opera */
 }
 
 .Mensagens::-webkit-scrollbar-track {
@@ -146,7 +139,6 @@ body {
     background-color: transparent;
     border: none;
     color: #b62b2b;
-
 }
 
 .Botao_Novo_Chat_2 {
@@ -192,38 +184,34 @@ body {
     border: none;
     color: #b62b2b
 }
-
+/* Define opacidade com icone transparente + transição suave para hover*/
 .UsersIcon {
     opacity: 0.5;
-    /* Define a opacidade para tornar o ícone transparente */
     transition: opacity 0.3s ease;
-    /* Adiciona uma transição suave para o hover */
+    
 }
 
+/* opacidade normal ao passar o mouse */
 .UsersIcon:hover {
     opacity: 1;
-    /* Retorna a opacidade ao valor normal ao passar o mouse */
 }
-
 
 .Sidebar {
     position: fixed;
     top: 0;
     left: -280px;
-    /* Oculta a barra lateral */
     width: 250px;
     height: 100%;
     background-color: #444;
     color: #fff;
     transition: left 0.3s ease;
-    /* Animação suave */
     padding: 10px;
     z-index: 1000;
 }
 
 .Sidebar.open {
     left: 0;
-    /* Mostra a barra lateral */
+
 }
 
 .Sidebar ul {
@@ -252,20 +240,18 @@ body {
 }
 
 
-
+/* Retorna a opacidade  normal ao passar o mouse */
 .Retangulo {
     margin-left: 10px;
-    /* Ajusta a margem quando a barra lateral está aberta */
     transition: margin-left 0.3s ease;
 }
 
+/* Ajuste de acordo com a largura da barra lateral */
 .Retangulo.open {
     margin-left: 260px;
-    /* Ajuste de acordo com a largura da barra lateral */
 }
 
 .Info {
-
     font-size: 14px;
     position: absolute;
     top: 70px;
@@ -361,3 +347,10 @@ body {
         top: 10px;
     }
 }
+
+
+
+
+
+
+

@@ -122,7 +122,7 @@ const App = () => {
 
             <div className="Retangulo">
                 <div className="Mensagens" ref={messagesEndRef}>
-                    {messages.map((msg, index) => (
+                    {messages.slice().reverse().map((msg, index) => (
                         <div key={index} className={`Mensagem ${msg.role}`}>
                             {msg.content}
                         </div>
@@ -152,4 +152,7 @@ const App = () => {
     );
 };
 
+
 export default App;
+
+
