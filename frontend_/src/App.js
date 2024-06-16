@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
     const [text, setText] = useState('');
     const [messages, setMessages] = useState([]);
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(true);
     const [loading, setLoading] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const messagesEndRef = useRef(null);
